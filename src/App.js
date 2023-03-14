@@ -1,40 +1,31 @@
 import React from "react";
-import styled from "styled-components";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Routes
+  } from 'react-router-dom';
+
+import Header from './Script/Header';
+import Main from './Script/Main';
+import NotFound from './Script/NotFound';
+import Product from './Script/Product';
 
 class App extends React.Component {
   render() {
-    return <BackGroundContainer>
-      <Input placeholder="테마를 입력하세요"></Input>
-    </BackGroundContainer>;
+    return (
+			<BrowserRouter>
+      <div className='App'>
+        <Routes>
+          <Route path="/" element={<Main />}> </Route>
+          <Route path="/Product/:ItemId" element={<Product />}> </Route>
+          {/* 상단에 위치하는 라우트들의 규칙을 모두 확인, 일치하는 라우트가 없는경우 처리 */}
+          <Route path="/*" element={<NotFound />}> </Route>
+        </Routes>
+      </div>
+			</BrowserRouter>
+    );
   }
 }
-
-const Input = styled.input`
-  position: absolute;
-  top: 100;
-  right: 0;
-  width: 190px;
-  height: 30px;
-  padding: 5px;
-  background: transparent;
-  font-size: 20px;
-  color: white;
-`;
-
-const BackGroundContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-      to right,
-      rgba(20, 20, 20, 0.1) 10%,
-      rgba(20, 20, 20, 0.7) 70%,
-      rgba(20, 20, 20, 1)
-    ),
-    url(https://source.unsplash.com/random/1920x1080);
-  background-size: cover;
-`;
 
 export default App;
