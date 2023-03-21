@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 // props 인자 추가
 const Main = (props) => {
-
 	return (
 		<div
 			style={{
@@ -17,8 +16,16 @@ const Main = (props) => {
 			<h3>안녕하세요. 메인페이지 입니다.</h3>
 
 			<ul>
-				<Link to="/product/1" style={{ color: 'white' }}><li>1번상품</li></Link>
-				<Link to="/product/2" style={{ color: 'white' }}><li>2번상품</li></Link>
+				<Link to={{ pathname: `/product/1`, state: { itemId: 1 } }} style={{ color: 'white' }}>
+					<li>1번그림</li>
+				</Link>
+				<Link to={{ pathname: `/product/2`, state: { itemId: 2 } }} style={{ color: 'white' }}>
+					<li>2번그림</li>
+				</Link>
+				<br/>
+				<Link to={{ pathname: '/test',}} style={{ color: 'white' }}>
+					<li>Go to Test Page</li>
+				</Link>
 			</ul>
 		</div>
 	);
