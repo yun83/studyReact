@@ -26,6 +26,11 @@ const Main = (props) => {
 				<Link to={{ pathname: '/test',}} style={{ color: 'white' }}>
 					<li>Go to Test Page</li>
 				</Link>
+				<br/>
+				{/* PlayTom.js로의 링크 추가 */}
+				<Link to={{ pathname: '/PlayTom',}} style={{ color: 'white' }}>
+					<li>Play Tom</li>
+				</Link>
 			</ul>
 		</div>
 	);
