@@ -17,7 +17,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <div className="App" >
             <Routes>
               <Route path="/" element={<Main />}></Route>
