@@ -27,10 +27,10 @@ const PlayTom = () => {
   }
 
   const { unityProvider, isLoaded, loadingProgression  } = useUnityContext({
-    loaderUrl: "build/PlayTomWebGL.loader.js",
-    dataUrl: "build/PlayTomWebGL.data",
-    frameworkUrl: "build/PlayTomWebGL.framework.js",
-    codeUrl: "build/PlayTomWebGL.wasm",
+    loaderUrl: "Unity/PlayTomWebGL.loader.js",
+    dataUrl: "Unity/PlayTomWebGL.data",
+    frameworkUrl: "Unity/PlayTomWebGL.framework.js",
+    codeUrl: "Unity/PlayTomWebGL.wasm",
     companyName: "TOM N TOMS",
     productName: "PlayTom",
     productVersion: "1.1.223",
