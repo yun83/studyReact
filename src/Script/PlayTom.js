@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 const PlayTom = () => {
   const navigate = useNavigate();
-  // const { unityContent } = useUnityContext();
   const { unload } = useUnityContext();
 
   const navigateToPurchase = () => {
@@ -13,18 +12,24 @@ const PlayTom = () => {
     navigate("/");
   };
 
-  // useEffect(() => {
-  //   // 컴포넌트가 언마운트될 때 Unity 컨텐츠 종료 또는 초기화 수행
-  //   return () => {
-  //     alert("--------------222--------------");
-  //     unityContent.quitUnityInstance();
-  //   }
-  // }, [unityContent]);
-
   async function handleClick() {
     // alert("--------------111--------------");
     await unload();
   }
+  
+  useEffect(() => {
+    const body = document.body;
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const setBodyBackgroundColor = () => {
+      body.style.backgroundColor = darkModeMediaQuery.matches ? '#1a1a1a' : '#fff';
+    };
+    setBodyBackgroundColor();
+    darkModeMediaQuery.addListener(setBodyBackgroundColor);
+    return () => {
+      darkModeMediaQuery.removeListener(setBodyBackgroundColor);
+    };
+  }, []);
+
 
   const { unityProvider, isLoaded, loadingProgression  } = useUnityContext({
     loaderUrl: "Unity/PlayTomWebGL.loader.js",
