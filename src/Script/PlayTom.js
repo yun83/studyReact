@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Unity, useUnityContext } from "react-unity-webgl";
 
@@ -22,7 +22,7 @@ const PlayTom = () => {
   // }, [unityContent]);
 
   async function handleClick() {
-    alert("--------------111--------------");
+    // alert("--------------111--------------");
     await unload();
   }
 
@@ -41,7 +41,6 @@ const PlayTom = () => {
   return (
     <div
         style={{
-            height: '100vh',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             position: 'fixed',
@@ -52,13 +51,14 @@ const PlayTom = () => {
             zIndex: -10,
         }}
     >
-      <button onClick={navigateToPurchase}>뒤로가기</button><br />
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
-      }}>
-        {isLoaded === false && (
+      <button style={{ marginLeft: '5px' , marginTop: '5px'}} onClick={navigateToPurchase}>뒤로가기</button><br />
+      <div style={{ 
+          marginTop: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'}}>
+        {
+          isLoaded === false && (
           // We'll conditionally render the loading overlay if the Unity
           // Application is not loaded.
           <div className="loading-overlay">

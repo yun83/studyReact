@@ -26,7 +26,6 @@ const Product = () => {
     return (
         <div
             style={{
-                height: '100vh',
                 backgroundImage: `url(${bgImgPath})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
@@ -38,7 +37,7 @@ const Product = () => {
                 zIndex: -10,
             }}
         >
-            <button onClick={navigateToPurchase}>뒤로가기</button><br />
+            <button style={{ marginLeft: '5px' , marginTop: '5px'}} onClick={navigateToPurchase}>뒤로가기</button><br />
             <br />
 
             <StyledText>글자의 색상 적용과</StyledText>

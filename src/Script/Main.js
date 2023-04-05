@@ -7,9 +7,14 @@ const Main = (props) => {
 		<div
 			style={{
 				backgroundImage: `url("https://tomntoms.com/assets/images/sub/sv_1.jpg")`,
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "cover",
-				position: "fixed",
+				backgroundRepeat: 'no-repeat',
+				backgroundSize: 'cover',
+				position: 'fixed',
+				top: 0,
+				left: 0,
+				width: '100%',
+				height: '100%',
+				zIndex: -10,
 			}}
 			>
 

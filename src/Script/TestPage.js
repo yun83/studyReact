@@ -12,7 +12,6 @@ const TestPage = (props) => {
   return (
     <div
         style={{
-            height: '100vh',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             position: 'fixed',
@@ -23,7 +22,7 @@ const TestPage = (props) => {
             zIndex: -10,
         }}
     >
-        <button onClick={navigateToPurchase}>뒤로가기</button>
+        <button style={{ marginLeft: '5px' , marginTop: '5px'}} onClick={navigateToPurchase}>뒤로가기</button>
         <h3>테스트 페이지 입니다.</h3>
     </div>
   );
