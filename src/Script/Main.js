@@ -1,44 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-// props 인자 추가
 const Main = (props) => {
-	return (
-		<div
-			style={{
-				backgroundImage: `url("https://tomntoms.com/assets/images/sub/sv_1.jpg")`,
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover',
-				position: 'fixed',
-				top: 0,
-				left: 0,
-				width: '100%',
-				height: '100%',
-				zIndex: -10,
-			}}
-			>
 
-			<h3>안녕하세요. 메인페이지 입니다.</h3>
+  const [isOpen, setIsOpen] = useState(false);
 
-			<ul>
-				<Link to={{ pathname: `/product/1`, state: { itemId: 1 } }} style={{ color: 'white' }}>
-					<li>1번그림</li>
-				</Link>
-				<Link to={{ pathname: `/product/2`, state: { itemId: 2 } }} style={{ color: 'white' }}>
-					<li>2번그림</li>
-				</Link>
-				<br/>
-				<Link to={{ pathname: '/test',}} style={{ color: 'white' }}>
-					<li>Go to Test Page</li>
-				</Link>
-				<br/>
-				{/* PlayTom.js로의 링크 추가 */}
-				<Link to={{ pathname: '/PlayTom',}} style={{ color: 'white' }}>
-					<li>Play Tom</li>
-				</Link>
-			</ul>
+  const toggleSide = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+	
+    <div
+      style={{
+        backgroundImage: `url("https://tomntoms.com/assets/images/sub/sv_1.jpg")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -10,
+      }}
+    >
+	<button style={{ marginLeft: '5px', marginTop: '5px' }} onClick={toggleSide}>setIsOpen</button><br />
+	  {
+		isOpen && 
+		<div>
+			<h3>setIsOpen = {isOpen ? "트루" : "펄스"}</h3>
 		</div>
-	);
+	  }
+      <h3>안녕하세요. 메인페이지 입니다.</h3>
+      
+      <ul>
+        <Link to={{ pathname: `/product/1`, state: { itemId: 1 } }} style={{ color: 'white' }}>
+          <li>1번그림</li>
+        </Link>
+        <Link to={{ pathname: `/product/2`, state: { itemId: 2 } }} style={{ color: 'white' }}>
+          <li>2번그림</li>
+        </Link>
+        <br />
+        <Link to={{ pathname: '/test' }} style={{ color: 'white' }}>
+          <li>Go to Test Page</li>
+        </Link>
+        <br />
+        <Link to={{ pathname: '/PlayTom' }} style={{ color: 'white' }}>
+          <li>Unity Web GL Add Test</li>
+        </Link>
+      </ul>
+    </div>
+  );
 };
 
 export default Main;
