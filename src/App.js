@@ -3,13 +3,13 @@ import {
   BrowserRouter,
   Route,
   Routes,
-  Link
 } from 'react-router-dom';
 
 import Main from './Script/Main';
 import Product from './Script/Product';
 import Login from './Script/Login';
 import Test from './Script/TestPage';
+import T02 from './Script/T02Page';
 import PlayTom from './Script/PlayTom';
 import NotFound from './Script/NotFound';
 
@@ -22,7 +22,8 @@ class App extends React.Component {
             <Routes>
               <Route path="/" element={<Main />}></Route>
               <Route path="/Login" element={<Login />}></Route>
-              <Route path="/Test" element={<Test />}></Route>
+              <Route path="/Test" element={<Test />}></Route>``
+              <Route path="/T02" element={<T02 />}></Route>
               
               <Route path="/PlayTom" element={<PlayTom />}></Route>
 

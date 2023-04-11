@@ -13,15 +13,13 @@ const Main = (props) => {
 	
     <div
       style={{
-        backgroundImage: `url("https://tomntoms.com/assets/images/sub/sv_1.jpg")`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        position: 'fixed',
         top: 0,
         left: 0,
         width: '100%',
         height: '100%',
-        zIndex: -10,
+        position: 'fixed',
+        backgroundSize: 'cover',
+        backgroundImage: `url("https://tomntoms.com/assets/images/sub/sv_1.jpg")`,
       }}
     >
 	<button style={{ marginLeft: '5px', marginTop: '5px' }} onClick={toggleSide}>setIsOpen</button><br />
@@ -44,6 +42,10 @@ const Main = (props) => {
         <Link to={{ pathname: '/test' }} style={{ color: 'white' }}>
           <li>Go to Test Page</li>
         </Link>
+        <Link to={{ pathname: '/T02' }} style={{ color: 'white' }}>
+          <li>Go to Test 02 Page</li>
+        </Link>
+        
         <br />
         <Link to={{ pathname: '/PlayTom' }} style={{ color: 'white' }}>
           <li>Unity Web GL Add Test</li>
