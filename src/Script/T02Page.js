@@ -1,5 +1,17 @@
 import React, { useState }  from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import T02Right01 from './T02Right01'
+import T02Right02 from './T02Right02'
+
+const StyledButton = styled.button`
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+`;
 
 const T02Page = (props) => {
   const [selectedMenu, setSelectedMenu] = useState(1);
@@ -37,7 +49,7 @@ const T02Page = (props) => {
         transition: 'width 0.5s ease-in-out',
         backgroundColor: 'blue',
         }}>
-        <button style={{ marginLeft: '5px' , marginTop: '5px'}} onClick={navigateToPurchase}>뒤로가기</button>
+        <StyledButton  style={{ marginLeft: '5px' , marginTop: '5px' }} onClick={navigateToPurchase}>뒤로가기</StyledButton >
         <h1>왼쪽 페이지</h1>
         
         {
@@ -61,9 +73,9 @@ const T02Page = (props) => {
       <div>
       {
         selectedMenu === 1 ? (
-          <h2>오른쪽 01</h2>
+          <T02Right01/>
         ) : selectedMenu === 2 ? (
-          <h2>오른쪽 02</h2>
+          <T02Right02/>
         ) : selectedMenu === 3 ? (
           <h2>오른쪽 03</h2>
         ) : null
