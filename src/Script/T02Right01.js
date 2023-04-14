@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   background-size: cover;
-  background-image: url('https://tomntoms.com/assets/images/sub/sv_1.jpg');
+  background-image: url('https://shop-phinf.pstatic.net/20220613_131/16550869300467idWQ_JPEG/56222763415662104_627272123.jpg');
   height: 100vh;
   display: flex;
   align-items: center;

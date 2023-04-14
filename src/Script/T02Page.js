@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import T02Right01 from './T02Right01'
 import T02Right02 from './T02Right02'
+import T02Right03 from './T02Right03'
 
 const StyledButton = styled.button`
   background-color: blue;
@@ -77,7 +78,7 @@ const T02Page = (props) => {
         ) : selectedMenu === 2 ? (
           <T02Right02/>
         ) : selectedMenu === 3 ? (
-          <h2>오른쪽 03</h2>
+          <T02Right03/>
         ) : null
       }
       </div>
