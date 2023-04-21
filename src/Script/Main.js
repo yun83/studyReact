@@ -50,6 +50,9 @@ const Main = (props) => {
         <Link to={{ pathname: '/PlayTom' }} style={{ color: 'white' }}>
           <li>Unity Web GL Add Test</li>
         </Link>
+        <Link to={{ pathname: '/Puzzle' }} style={{ color: 'white' }}>
+          <li>Unity Puzzle Game Test</li>
+        </Link>
       </ul>
     </div>
   );

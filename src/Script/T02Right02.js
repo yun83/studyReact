@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-  background-color: #aabbff;
+  background: rgba(170, 187, 255, 0.9);
   padding: 20px;
   border-radius: 5px;
   margin-top: 20px;
