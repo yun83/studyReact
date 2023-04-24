@@ -49,7 +49,7 @@ const Product = () => {
                 <h3>{ItemId}번 그림 페이지입니다.</h3>
                 <img
                     src={process.env.PUBLIC_URL + imgAdd}
-                    alt="AI Image"
+                    alt="AI 이미지"
                     style={{ width: 'auto', height: '300px' }}
                 />
             </Container>

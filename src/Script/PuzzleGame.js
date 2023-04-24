@@ -9,7 +9,10 @@ const Puzzle = () => {
   const navigateToPurchase = () => {
     // Unity 컨텐츠 종료 또는 초기화 수행
     handleClick();
-    navigate("/");
+    setTimeout(() => {
+      sendMessage("WebController", "ApplicationQuit");
+      navigate("/");
+    }, 500);
   };
 
   async function handleClick() {
@@ -31,7 +34,7 @@ const Puzzle = () => {
   }, []);
 
 
-  const { unityProvider, isLoaded, loadingProgression  } = useUnityContext({
+  const { unityProvider, sendMessage, isLoaded, loadingProgression  } = useUnityContext({
     loaderUrl: "Puzzle/Puzzle.loader.js",
     dataUrl: "Puzzle/Puzzle.data",
     frameworkUrl: "Puzzle/Puzzle.framework.js",
@@ -71,7 +74,7 @@ const Puzzle = () => {
           </div>
         )}
         <Unity unityProvider={unityProvider} 
-          style={{ width: 336, height: 560 }} />
+          style={{ width: 800, height: 480 }} />
       </div>
     </div>
   );
