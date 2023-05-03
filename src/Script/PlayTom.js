@@ -13,7 +13,10 @@ const PlayTom = () => {
   };
 
   async function handleClick() {
-    // alert("--------------111--------------");
+    //alert("--------------111--------------");
+    setTimeout(() => {
+      sendMessage("WebController", "ApplicationQuit");
+    }, 500);
     await unload();
   }
   
@@ -31,7 +34,7 @@ const PlayTom = () => {
   }, []);
 
 
-  const { unityProvider, isLoaded, loadingProgression  } = useUnityContext({
+  const { unityProvider, sendMessage, isLoaded, loadingProgression  } = useUnityContext({
     loaderUrl: "Unity/PlayTomWebGL.loader.js",
     dataUrl: "Unity/PlayTomWebGL.data",
     frameworkUrl: "Unity/PlayTomWebGL.framework.js",

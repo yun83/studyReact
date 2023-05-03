@@ -1,22 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 const Puzzle = () => {
   const navigate = useNavigate();
   const { unload } = useUnityContext();
+  const unityRef = useRef(null);
 
   const navigateToPurchase = () => {
     // Unity 컨텐츠 종료 또는 초기화 수행
     handleClick();
-    setTimeout(() => {
-      sendMessage("WebController", "ApplicationQuit");
-      navigate("/");
-    }, 500);
+    navigate("/");
   };
 
   async function handleClick() {
-    // alert("--------------111--------------");
+    //alert("--------------111--------------");
+      setTimeout(() => {
+        sendMessage("WebController", "ApplicationQuit");
+      }, 500);
     await unload();
   }
   
@@ -33,8 +34,18 @@ const Puzzle = () => {
     };
   }, []);
 
+  useEffect(() => {
+    function handleResize() {
+      if (unityRef.current) {
+        unityRef.current.style.width = `${window.innerWidth}px`;
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const { unityProvider, sendMessage, isLoaded, loadingProgression  } = useUnityContext({
+  const { unityProvider, sendMessage, isLoaded, loadingProgression } = useUnityContext({
     loaderUrl: "Puzzle/Puzzle.loader.js",
     dataUrl: "Puzzle/Puzzle.data",
     frameworkUrl: "Puzzle/Puzzle.framework.js",
@@ -73,8 +84,7 @@ const Puzzle = () => {
             <p>Loading... ({loadingPercentage}%)</p>
           </div>
         )}
-        <Unity unityProvider={unityProvider} 
-          style={{ width: 800, height: 480 }} />
+        <Unity ref={unityRef} unityProvider={unityProvider} />
       </div>
     </div>
   );
