@@ -6,6 +6,7 @@ const PlayTom = () => {
   const navigate = useNavigate();
   const { unload } = useUnityContext();
 
+
   const navigateToPurchase = () => {
     // Unity 컨텐츠 종료 또는 초기화 수행
     handleClick();
@@ -19,22 +20,8 @@ const PlayTom = () => {
     }, 500);
     await unload();
   }
-  
-  useEffect(() => {
-    const body = document.body;
-    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const setBodyBackgroundColor = () => {
-      body.style.backgroundColor = darkModeMediaQuery.matches ? '#1a1a1a' : '#fff';
-    };
-    setBodyBackgroundColor();
-    darkModeMediaQuery.addListener(setBodyBackgroundColor);
-    return () => {
-      darkModeMediaQuery.removeListener(setBodyBackgroundColor);
-    };
-  }, []);
 
-
-  const { unityProvider, sendMessage, isLoaded, loadingProgression  } = useUnityContext({
+  const { unityProvider, UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate, sendMessage, isLoaded, loadingProgression  } = useUnityContext({
     loaderUrl: "Unity/PlayTomWebGL.loader.js",
     dataUrl: "Unity/PlayTomWebGL.data",
     frameworkUrl: "Unity/PlayTomWebGL.framework.js",
@@ -43,8 +30,17 @@ const PlayTom = () => {
     productName: "PlayTom",
     productVersion: "1.1.223",
   });
-
+  
   const loadingPercentage = Math.round(loadingProgression * 100);
+
+  useEffect(() => {
+    return () => {
+      detachAndUnloadImmediate().catch((reason) => {
+        console.log(reason);
+      });
+    };
+  }, [detachAndUnloadImmediate]);
+
 
   return (
     <div

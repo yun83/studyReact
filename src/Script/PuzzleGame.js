@@ -7,6 +7,7 @@ const Puzzle = () => {
   const { unload } = useUnityContext();
   const unityRef = useRef(null);
 
+
   const navigateToPurchase = () => {
     // Unity 컨텐츠 종료 또는 초기화 수행
     handleClick();
@@ -20,19 +21,17 @@ const Puzzle = () => {
       }, 500);
     await unload();
   }
-  
-  useEffect(() => {
-    const body = document.body;
-    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const setBodyBackgroundColor = () => {
-      body.style.backgroundColor = darkModeMediaQuery.matches ? '#1a1a1a' : '#fff';
-    };
-    setBodyBackgroundColor();
-    darkModeMediaQuery.addListener(setBodyBackgroundColor);
-    return () => {
-      darkModeMediaQuery.removeListener(setBodyBackgroundColor);
-    };
-  }, []);
+
+  const { unityProvider,UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate, sendMessage, isLoaded, loadingProgression } = useUnityContext({
+    loaderUrl: "Puzzle/Puzzle.loader.js",
+    dataUrl: "Puzzle/Puzzle.data",
+    frameworkUrl: "Puzzle/Puzzle.framework.js",
+    codeUrl: "Puzzle/Puzzle.wasm",
+    companyName: "TOM N TOMS",
+    productName: "PuzzleGame",
+    productVersion: "1.1.223",
+  });
+  const loadingPercentage = Math.round(loadingProgression * 100);
 
   useEffect(() => {
     function handleResize() {
@@ -42,20 +41,13 @@ const Puzzle = () => {
     }
     window.addEventListener('resize', handleResize);
     handleResize();
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const { unityProvider, sendMessage, isLoaded, loadingProgression } = useUnityContext({
-    loaderUrl: "Puzzle/Puzzle.loader.js",
-    dataUrl: "Puzzle/Puzzle.data",
-    frameworkUrl: "Puzzle/Puzzle.framework.js",
-    codeUrl: "Puzzle/Puzzle.wasm",
-    companyName: "TOM N TOMS",
-    productName: "PuzzleGame",
-    productVersion: "1.1.223",
-  });
-
-  const loadingPercentage = Math.round(loadingProgression * 100);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      detachAndUnloadImmediate().catch((reason) => {
+        console.log(reason);
+      });
+    };
+  }, [detachAndUnloadImmediate]);
 
   return (
     <div
