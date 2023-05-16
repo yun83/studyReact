@@ -4,25 +4,14 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 
 const Puzzle = () => {
   const navigate = useNavigate();
-  const { unload } = useUnityContext();
   const unityRef = useRef(null);
 
-
   const navigateToPurchase = () => {
-    // Unity 컨텐츠 종료 또는 초기화 수행
-    handleClick();
-    navigate("/");
+    // navigate("/");
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
   };
 
-  async function handleClick() {
-    //alert("--------------111--------------");
-      setTimeout(() => {
-        sendMessage("WebController", "ApplicationQuit");
-      }, 500);
-    await unload();
-  }
-
-  const { unityProvider,UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate, sendMessage, isLoaded, loadingProgression } = useUnityContext({
+  const { unityProvider,UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate, isLoaded, loadingProgression } = useUnityContext({
     loaderUrl: "Puzzle/Puzzle.loader.js",
     dataUrl: "Puzzle/Puzzle.data",
     frameworkUrl: "Puzzle/Puzzle.framework.js",

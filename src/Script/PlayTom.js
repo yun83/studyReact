@@ -4,24 +4,13 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 
 const PlayTom = () => {
   const navigate = useNavigate();
-  const { unload } = useUnityContext();
-
 
   const navigateToPurchase = () => {
-    // Unity 컨텐츠 종료 또는 초기화 수행
-    handleClick();
-    navigate("/");
+    // navigate("/");
+    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
   };
 
-  async function handleClick() {
-    //alert("--------------111--------------");
-    setTimeout(() => {
-      sendMessage("WebController", "ApplicationQuit");
-    }, 500);
-    await unload();
-  }
-
-  const { unityProvider, UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate, sendMessage, isLoaded, loadingProgression  } = useUnityContext({
+  const { unityProvider, UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate, isLoaded, loadingProgression  } = useUnityContext({
     loaderUrl: "Unity/PlayTomWebGL.loader.js",
     dataUrl: "Unity/PlayTomWebGL.data",
     frameworkUrl: "Unity/PlayTomWebGL.framework.js",
@@ -30,7 +19,6 @@ const PlayTom = () => {
     productName: "PlayTom",
     productVersion: "1.1.223",
   });
-  
   const loadingPercentage = Math.round(loadingProgression * 100);
 
   useEffect(() => {
