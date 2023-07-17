@@ -44,7 +44,7 @@ const T02Page = (props) => {
       }}>
 
       <div style={{ 
-        width: '20%',
+        width: '35%',
         height: '100%',
         float: 'left',
         transition: 'width 0.5s ease-in-out',

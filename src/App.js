@@ -12,6 +12,7 @@ import Test from './Script/TestPage';
 import T02 from './Script/T02Page';
 import PlayTom from './Script/PlayTom';
 import Puzzle from './Script/PuzzleGame';
+import MergeGame from './Script/MergeGame';
 import NotFound from './Script/NotFound';
 
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
               
               <Route path="/PlayTom" element={<PlayTom />}></Route>
               <Route path="/Puzzle" element={<Puzzle />}></Route>
+              <Route path="/MergeGame" element={<MergeGame />}></Route>
 
               <Route path="/product/:ItemId" element={<Product />}></Route>
               {/* 상단에 위치하는 라우트들의 규칙을 모두 확인, 일치하는 라우트가 없는경우 처리 */}

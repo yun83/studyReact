@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 const PlayTom = () => {
-  const navigate = useNavigate();
+  const unityRef = useRef(null);
 
-  const navigateToPurchase = () => {
-    // navigate("/");
-    navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
-  };
+  // const navigateToPurchase = () => {
+  //   // navigate("/");
+  //   navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+  // };
 
-  const { unityProvider, UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate, isLoaded, loadingProgression  } = useUnityContext({
+  const { unityProvider, UNSAFE__detachAndUnloadImmediate: detachAndUnloadImmediate } = useUnityContext({
     loaderUrl: "Unity/PlayTomWebGL.loader.js",
     dataUrl: "Unity/PlayTomWebGL.data",
     frameworkUrl: "Unity/PlayTomWebGL.framework.js",
@@ -19,9 +18,18 @@ const PlayTom = () => {
     productName: "PlayTom",
     productVersion: "1.1.223",
   });
-  const loadingPercentage = Math.round(loadingProgression * 100);
 
   useEffect(() => {
+
+    function handleResize() {
+      if (unityRef.current) {
+        unityRef.current.style.width = `${window.innerWidth}px`;
+        unityRef.current.style.height = `${window.innerHeight}px`;
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
     return () => {
       detachAndUnloadImmediate().catch((reason) => {
         console.log(reason);
@@ -35,6 +43,7 @@ const PlayTom = () => {
         style={{
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
+            backgroundColor: 'green',
             position: 'fixed',
             top: 0,
             left: 0,
@@ -43,22 +52,15 @@ const PlayTom = () => {
             zIndex: -10,
         }}
     >
-      <button style={{ marginLeft: '5px' , marginTop: '5px'}} onClick={navigateToPurchase}>뒤로가기</button><br />
       <div style={{ 
-          marginTop: '20px',
           display: 'flex',
+          marginbtop : '20px',
+          marginbottom : '20px',
+          marginLeft : '20px',
+          marginRight : '20px',
           justifyContent: 'center',
           alignItems: 'center'}}>
-        {
-          isLoaded === false && (
-          // We'll conditionally render the loading overlay if the Unity
-          // Application is not loaded.
-          <div className="loading-overlay">
-            <p>Loading... ({loadingPercentage}%)</p>
-          </div>
-        )}
-        <Unity unityProvider={unityProvider} 
-          style={{ width: 336, height: 560 }} />
+          <Unity ref={unityRef} unityProvider={unityProvider} />
       </div>
     </div>
   );

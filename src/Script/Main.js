@@ -53,6 +53,10 @@ const Main = (props) => {
         <Link to={{ pathname: '/Puzzle' }} style={{ color: 'white' }}>
           <li>Unity Puzzle Game Test</li>
         </Link>
+        <Link to={{ pathname: '/MergeGame' }} style={{ color: 'white' }}>
+          <li>Merge Game</li>
+        </Link>
+        
       </ul>
     </div>
   );
